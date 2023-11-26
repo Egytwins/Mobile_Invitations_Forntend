@@ -5,7 +5,7 @@ export default function MainLayout() {
   return (
     <>
       <div className="bgImage"></div>
-      <div className="d-flex w-100 h-100vh justify-content-center align-items-center py-3 position-relative zindexMain">
+      <div className="d-flex w-100 h-100 justify-content-center align-items-center py-3 position-relative zindexMain">
         {/* Create a container for content */}
         <div className="container h-100">
           <Outlet></Outlet>

@@ -1,3 +1,6 @@
 import React from "react";
 
-export default function LoginContext() {}
+export default interface Login {
+  email: string;
+  password: string;
+}
