@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import MobileMune from "../MobileMune/MobileMune";
 
 export default function MainLayout() {
   return (
@@ -12,6 +13,7 @@ export default function MainLayout() {
           {/* Render the child components specified by the Router */}
         </div>
       </div>
+      <MobileMune />
     </>
   );
 }

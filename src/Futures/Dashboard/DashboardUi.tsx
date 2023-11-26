@@ -5,7 +5,7 @@ export default function DashboardUi() {
     <div>
       <div
         id="carouselExampleAutoplaying"
-        className="carousel slide fixed-top my-3"
+        className="carousel slide mb-5 mt-3"
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
@@ -21,8 +21,8 @@ export default function DashboardUi() {
             </div>
           </div>
           <div className="carousel-item">
-            <div className="bg-success w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-3">
-              <span className="bg-white p-4 rounded-4 text-success">
+            <div className="bg-warning w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-3">
+              <span className="bg-white p-4 rounded-4 text-warning">
                 <i className="bi bi-hourglass-split fs-2"></i>
               </span>
               <div className="tail-text text-white">
@@ -32,8 +32,8 @@ export default function DashboardUi() {
             </div>
           </div>
           <div className="carousel-item">
-            <div className="bg-warning w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
-              <span className="bg-white p-4 rounded-4 text-warning">
+            <div className="bg-success w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
+              <span className="bg-white p-4 rounded-4 text-success">
                 <i className="bi bi-calendar-check fs-2"></i>
               </span>
               <div className="tail-text text-white">
@@ -42,6 +42,14 @@ export default function DashboardUi() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="recentlyVisits w-100">
+        <h3>Recently Visits</h3>
+        <div className="card p-3 flex-row justify-content-between align-items-center">
+          <span className="name">Ahmed Nasser</span>
+          <span className="time">30 Min</span>
+          <span className="badge text-bg-success">Check In</span>
         </div>
       </div>
     </div>

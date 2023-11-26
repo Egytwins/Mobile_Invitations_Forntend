@@ -24,7 +24,7 @@ export default function LoginUi() {
     validationSchema: valdition,
   });
   return (
-    <div className="row h-100 align-items-center justify-content-center">
+    <div className="row align-items-center justify-content-center min-vh-100">
       <div>
         <div className="logo-img m-4 fixed-top ">
           <img src={logo} alt="Logo" width="120px" />
