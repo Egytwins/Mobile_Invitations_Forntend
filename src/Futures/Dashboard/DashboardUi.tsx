@@ -5,44 +5,44 @@ export default function DashboardUi() {
     <div>
       <div
         id="carouselExampleAutoplaying"
-        className="carousel slide"
+        className="carousel slide fixed-top my-3"
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src="..." className="d-block w-100" alt="..." />
+            <div className="bg-info w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
+              <span className="bg-white p-4 rounded-4 text-info">
+                <i className="bi bi-alarm fs-2"></i>
+              </span>
+              <div className="tail-text text-white">
+                <h4>Today Visits</h4>
+                <h3 className="text-center">8</h3>
+              </div>
+            </div>
           </div>
           <div className="carousel-item">
-            <img src="..." className="d-block w-100" alt="..." />
+            <div className="bg-success w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-3">
+              <span className="bg-white p-4 rounded-4 text-success">
+                <i className="bi bi-hourglass-split fs-2"></i>
+              </span>
+              <div className="tail-text text-white">
+                <h4>Schedule Visits</h4>
+                <h3 className="text-center">5</h3>
+              </div>
+            </div>
           </div>
           <div className="carousel-item">
-            <img src="..." className="d-block w-100" alt="..." />
+            <div className="bg-warning w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
+              <span className="bg-white p-4 rounded-4 text-warning">
+                <i className="bi bi-calendar-check fs-2"></i>
+              </span>
+              <div className="tail-text text-white">
+                <h4>Punch In Visits</h4>
+                <h3 className="text-center">2</h3>
+              </div>
+            </div>
           </div>
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
   );
