@@ -17,6 +17,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+a {
+  text-decoration: none;
+}
 .showPassword {
   position: absolute;
   right: 3%;
@@ -44,7 +47,7 @@ code {
   position: fixed;
   bottom: 0%;
   width: 100%;
-  background: #cdcccc;
+  background: #fff;
   padding: 12px;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
@@ -55,15 +58,16 @@ code {
 }
 .mobileTab {
   color: #000;
-  font-size: 1.1rem;
+  font-size: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.mobileTab img {
+.mobileTab i {
   filter: brightness(0.2) !important;
+  font-size: 1.7rem !important;
 }
 
 .mobileTab.active {
@@ -71,7 +75,7 @@ code {
   font-weight: 600;
 }
 
-.mobileTab.active img {
+.mobileTab.active i {
   filter: brightness(1) !important;
 }
 .backBtn,

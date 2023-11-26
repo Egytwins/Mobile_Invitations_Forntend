@@ -10,7 +10,7 @@ export default function DashboardUi() {
       >
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <div className="bg-info w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
+            <div className="bg-info w-100 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
               <span className="bg-white p-4 rounded-4 text-info">
                 <i className="bi bi-alarm fs-2"></i>
               </span>
@@ -21,7 +21,7 @@ export default function DashboardUi() {
             </div>
           </div>
           <div className="carousel-item">
-            <div className="bg-warning w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-3">
+            <div className="bg-warning w-100 rounded-4 m-auto p-2 d-flex align-items-center gap-3">
               <span className="bg-white p-4 rounded-4 text-warning">
                 <i className="bi bi-hourglass-split fs-2"></i>
               </span>
@@ -32,7 +32,7 @@ export default function DashboardUi() {
             </div>
           </div>
           <div className="carousel-item">
-            <div className="bg-success w-75 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
+            <div className="bg-success w-100 rounded-4 m-auto p-2 d-flex align-items-center gap-2">
               <span className="bg-white p-4 rounded-4 text-success">
                 <i className="bi bi-calendar-check fs-2"></i>
               </span>
@@ -46,10 +46,20 @@ export default function DashboardUi() {
       </div>
       <div className="recentlyVisits w-100">
         <h3>Recently Visits</h3>
-        <div className="card p-3 flex-row justify-content-between align-items-center">
-          <span className="name">Ahmed Nasser</span>
+        <div className="card p-3 my-2 flex-row justify-content-between align-items-center">
+          <span className="name">Ahmed Na..</span>
           <span className="time">30 Min</span>
           <span className="badge text-bg-success">Check In</span>
+        </div>
+        <div className="card p-3 my-2 flex-row justify-content-between align-items-center">
+          <span className="name">Mohamd A..</span>
+          <span className="time">10 days</span>
+          <span className="badge text-bg-warning">Up Coming</span>
+        </div>
+        <div className="card p-3 my-2 flex-row justify-content-between align-items-center">
+          <span className="name">Any Thing..</span>
+          <span className="time">yesterday</span>
+          <span className="badge text-bg-danger">Cancled</span>
         </div>
       </div>
     </div>
