@@ -26,7 +26,7 @@ export default function LoginUi() {
   return (
     <div className="row h-100 align-items-center justify-content-center">
       <div>
-        <div className="logo-img m-4 fixed-top">
+        <div className="logo-img m-4 fixed-top ">
           <img src={logo} alt="Logo" width="120px" />
         </div>
         <form
