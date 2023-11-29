@@ -1,3 +1,7 @@
+:root {
+  --mainColor: #0770a6;
+}
+
 html,
 body,
 #root {
@@ -71,7 +75,7 @@ code {
 }
 
 .mobileTab.active {
-  color: #0a9396;
+  color: var(--mainColor) !important;
   font-weight: 600;
 }
 
@@ -96,4 +100,16 @@ code {
   .selectNav {
     display: none;
   }
+}
+/* override info Color In bootstrab */
+
+.btn-info {
+  background: var(--mainColor) !important;
+}
+
+.bg-info {
+  background: var(--mainColor) !important;
+}
+.text-info {
+  color: var(--mainColor) !important;
 }

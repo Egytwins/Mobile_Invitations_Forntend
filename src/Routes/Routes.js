@@ -3,6 +3,7 @@ import MainLayout from "../Components/MainLayout/MainLayout";
 import LoginUi from "../Futures/Login/LoginUi";
 import DashboardUi from "../Futures/Dashboard/DashboardUi";
 import CreateInvitationUI from "../Futures/CreateInvitation/CreateInvitationUI";
+import MoreSettings from "../Futures/MoreSettings/MoreSettings";
 
 let routes = createHashRouter([
   {
@@ -20,6 +21,10 @@ let routes = createHashRouter([
       {
         path: "/CreateInvitation",
         element: <CreateInvitationUI />,
+      },
+      {
+        path: "/more",
+        element: <MoreSettings />,
       },
     ],
   },

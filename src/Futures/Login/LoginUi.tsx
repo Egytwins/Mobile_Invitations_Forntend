@@ -5,15 +5,15 @@ import { useFormik } from "formik";
 import Login from "./LoginContext";
 
 export default function LoginUi() {
-  let [showPassword, setShowPassword] = useState(false);
-  let valdition = yup.object({
+  const [showPassword, setShowPassword] = useState(false);
+  const validationSchema = yup.object({
     email: yup.string().email().required("Email is required"),
     password: yup
       .string()
       .required("Password is required")
       .min(6, "Password is too short - should be 6 chars minimum"),
   });
-  let formik = useFormik({
+  const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
@@ -21,8 +21,18 @@ export default function LoginUi() {
     onSubmit: (x: Login) => {
       console.log(x);
     },
-    validationSchema: valdition,
+    validationSchema: validationSchema,
   });
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    formik.handleChange(event);
+    formik.setFieldTouched("email", true);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    formik.handleChange(event);
+    formik.setFieldTouched("password", true);
+  };
+
   return (
     <div className="row align-items-center justify-content-center min-vh-100">
       <div>
@@ -43,7 +53,9 @@ export default function LoginUi() {
                 <input
                   type="email"
                   className="form-control shadow-none"
-                  onChange={formik.handleChange}
+                  onChange={handleEmailChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
                   id="email"
                   name="email"
                   placeholder="Email"
@@ -51,7 +63,9 @@ export default function LoginUi() {
                 <label htmlFor="email">Email</label>
               </div>
             </div>
-            <p className="text-danger">{formik.errors.email}</p>
+            {formik.touched.email && formik.errors.email && (
+              <p className="text-danger">{formik.errors.email}</p>
+            )}
           </div>
           <div className="inputWithValidation d-flex flex-column">
             <div className="input-group mb-3">
@@ -74,7 +88,9 @@ export default function LoginUi() {
                 </button>
                 <input
                   type={showPassword ? "text" : "password"}
-                  onChange={formik.handleChange}
+                  onChange={handlePasswordChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
                   className="form-control shadow-none"
                   name="password"
                   id="password"
@@ -83,7 +99,9 @@ export default function LoginUi() {
                 <label htmlFor="password">Password</label>
               </div>
             </div>
-            <p className="text-danger">{formik.errors.password}</p>
+            {formik.touched.password && formik.errors.password && (
+              <p className="text-danger">{formik.errors.password}</p>
+            )}
           </div>
 
           <button

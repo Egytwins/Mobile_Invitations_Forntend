@@ -32,18 +32,18 @@ export default function CreateInvitationUI() {
           <div className="inputWithValidation d-flex flex-column">
             <div className="input-group mb-3">
               <span className="input-group-text bg-info text-white">
-                <i className="bi bi-envelope"></i>
+                <i className="bi bi-alphabet"></i>
               </span>
               <div className="form-floating">
                 <input
-                  type="email"
+                  type="text"
                   className="form-control shadow-none"
                   onChange={formik.handleChange}
-                  id="email"
-                  name="email"
-                  placeholder="Email"
+                  id="name"
+                  name="name"
+                  placeholder="Name"
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="name">Name</label>
               </div>
             </div>
             <p className="text-danger">{formik.errors.email}</p>
@@ -51,18 +51,19 @@ export default function CreateInvitationUI() {
           <div className="inputWithValidation d-flex flex-column">
             <div className="input-group mb-3">
               <span className="input-group-text bg-info text-white">
-                <i className="bi bi-key"></i>
+                <i className="bi bi-telephone"></i>
               </span>
               <div className="form-floating position-relative">
                 <input
                   type="text"
                   onChange={formik.handleChange}
                   className="form-control shadow-none"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
+                  name="phone"
+                  id="phone"
+                  placeholder="phone"
+                  autoComplete="true"
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="phone">Phone</label>
               </div>
             </div>
             <p className="text-danger">{formik.errors.password}</p>
