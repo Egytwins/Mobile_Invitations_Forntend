@@ -2,6 +2,7 @@ import { createHashRouter } from "react-router-dom";
 import MainLayout from "../Components/MainLayout/MainLayout";
 import LoginUi from "../Futures/Login/LoginUi";
 import DashboardUi from "../Futures/Dashboard/DashboardUi";
+import CreateInvitationUI from "../Futures/CreateInvitation/CreateInvitationUI";
 
 let routes = createHashRouter([
   {
@@ -15,6 +16,10 @@ let routes = createHashRouter([
       {
         path: "/dashboard",
         element: <DashboardUi />,
+      },
+      {
+        path: "/CreateInvitation",
+        element: <CreateInvitationUI />,
       },
     ],
   },

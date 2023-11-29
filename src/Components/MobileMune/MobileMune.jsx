@@ -8,11 +8,11 @@ export default function MobileMune() {
           <i className="bi bi-bar-chart-fill"></i>
           <span>Dashboard</span>
         </NavLink>
-        <NavLink className="mobileTab" to="/">
+        <NavLink className="mobileTab" to="/CreateInvitation">
           <i className="bi bi-envelope-fill"></i>
           <span>Create Invitation</span>
         </NavLink>
-        <NavLink className="mobileTab" to="/licenes">
+        <NavLink className="mobileTab" to="/">
           <i className="bi bi-person-lines-fill"></i>
           <span>Invitation</span>
         </NavLink>
