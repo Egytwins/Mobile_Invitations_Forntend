@@ -8,7 +8,6 @@ import  {portContext}  from "../../Context/PortContext";
 import LoginServies from "./LoginServies";
 export default function LoginUi() {
   let  port  = useContext(portContext)
-  console.log(port);
   
   const [showPassword, setShowPassword] = useState(false);
   const validationSchema = yup.object({

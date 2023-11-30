@@ -6,10 +6,8 @@ import { portContext } from "../../Context/PortContext";
 
 
 export default async function LoginServies(Data: Login): Promise<any> {
-    let  port  = useContext(portContext)
-    console.log(port);
     let data = await axiosInstance
-    .post(`${port}api/Auth/getToken`, Data)
+    .post(`${process.env.REACT_APP_PORT}api/Auth/getToken`, Data)
     .then((res) => {
       localStorage.setItem("token", res.data.token);
   console.log(res);
