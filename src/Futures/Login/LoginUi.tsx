@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Login from "./LoginContext";
 import  {portContext}  from "../../Context/PortContext";
+import LoginServies from "./LoginServies";
 export default function LoginUi() {
   let  port  = useContext(portContext)
   console.log(port);
@@ -22,8 +23,8 @@ export default function LoginUi() {
       email: "",
       password: "",
     },
-    onSubmit: (x: Login) => {
-      console.log(x);
+    onSubmit: (Value: Login) => {
+      LoginServies(Value);
     },
     validationSchema: validationSchema,
   });
