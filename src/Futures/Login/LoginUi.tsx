@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+
+import React, { useContext, useState } from "react";
 import logo from "../../assets/images/Logo/avms-logo.png";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Login from "./LoginContext";
-
+import  {portContext}  from "../../Context/PortContext";
 export default function LoginUi() {
+  let  port  = useContext(portContext)
+  console.log(port);
+  
   const [showPassword, setShowPassword] = useState(false);
   const validationSchema = yup.object({
     email: yup.string().email().required("Email is required"),
