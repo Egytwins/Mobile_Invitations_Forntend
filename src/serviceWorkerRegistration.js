@@ -130,8 +130,6 @@ window.addEventListener("beforeinstallprompt", (e) => {
   console.log(`'beforeinstallprompt' event was fired.`);
 });
 buttonInstall.addEventListener("click", async () => {
-  console.log(deferredPrompt);
-  console.log(prompt);
   // Hide the app provided install promotion
   // hideInstallPromotion();
   // Show the install prompt
