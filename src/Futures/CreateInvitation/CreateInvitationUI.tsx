@@ -7,6 +7,7 @@ export default function CreateInvitationUI() {
   let [nameInput, setNameInput] = useState(false);
   let [phoneInput, setPhoneInput] = useState(false);
   let [docInput, setDocInput] = useState(false);
+  let [showDate, setShowDate] = useState(false);
   let valdition = yup.object({
     name: yup.string().min(2, "Name Is To Short").required("Name is required"),
     nationalId: yup
@@ -20,12 +21,20 @@ export default function CreateInvitationUI() {
       .string()
       .required("Phone is required")
       .matches(/^(\+201|201|01)[0-9]{8,9}$/, "Invalid Phone Number"),
+    entryDate: yup.date(),
+    expiryDate: yup.date(),
   });
   let formik = useFormik({
     initialValues: {
       name: "",
       phone: "",
       nationalId: "",
+      entryDate: new Date().toISOString().split(":").slice(0, 2).join(":"),
+      expiryDate: new Date(new Date().setHours(36))
+        .toISOString()
+        .split(":")
+        .slice(0, 2)
+        .join(":"),
     },
     onSubmit: (x) => {
       console.log(x);
@@ -107,13 +116,95 @@ export default function CreateInvitationUI() {
                   placeholder="National Id"
                   autoComplete="true"
                 />
-                <label htmlFor="documentID">National Id</label>
+                <label htmlFor="nationalId">National Id</label>
               </div>
             </div>
             {docInput && (
               <p className="text-danger">{formik.errors.nationalId}</p>
             )}
           </div>
+          <div className="inputWithValidation d-flex flex-column">
+            <div className="input-group mb-3 p-2">
+              <div className="form-floating position-relative">
+                <select
+                  className="form-select p-2"
+                  id="selectDate"
+                  data-control="select2"
+                  onChange={(e) => {
+                    e.target.value === "today"
+                      ? setShowDate(false)
+                      : setShowDate(true);
+                  }}
+                >
+                  <option value="">Select Date</option>
+                  <option value="today">Today 24H</option>
+                  <option value="Custom">Custom Date</option>
+                </select>
+                {/* <label htmlFor="documentID">Select Date</label> */}
+              </div>
+            </div>
+          </div>
+          {showDate ? (
+            <>
+              <div className="inputWithValidation d-flex flex-column">
+                <div className="input-group mb-3">
+                  <span className="input-group-text bg-info text-white">
+                    <i className="bi bi-person-vcard"></i>
+                  </span>
+                  <div className="form-floating position-relative">
+                    <input
+                      type="datetime-local"
+                      className="form-control shadow-none"
+                      name="entryDate"
+                      id="entryDate"
+                      min={new Date()
+                        .toISOString()
+                        .split(":")
+                        .slice(0, 2)
+                        .join(":")}
+                      onChange={formik.handleChange}
+                      placeholder="Entry Date"
+                      autoComplete="true"
+                    />
+                    <label htmlFor="entryDate">Entry Date</label>
+                  </div>
+                </div>
+                {docInput && (
+                  <p className="text-danger">{formik.errors.entryDate}</p>
+                )}
+              </div>
+              <div className="inputWithValidation d-flex flex-column">
+                <div className="input-group mb-3">
+                  <span className="input-group-text bg-info text-white">
+                    <i className="bi bi-person-vcard"></i>
+                  </span>
+                  <div className="form-floating position-relative">
+                    <input
+                      type="datetime-local"
+                      className="form-control shadow-none"
+                      onChange={formik.handleChange}
+                      name="expiryDate"
+                      id="expiryDate"
+                      placeholder="Expiry Date"
+                      min={new Date(new Date().setHours(36))
+                        .toISOString()
+                        .split(":")
+                        .slice(0, 2)
+                        .join(":")}
+                      autoComplete="true"
+                    />
+                    <label htmlFor="expiryDate">Expiry Date</label>
+                  </div>
+                </div>
+                {docInput && (
+                  <p className="text-danger">{formik.errors.expiryDate}</p>
+                )}
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+
           <button
             className="btn btn-info text-white w-100 rounded-5"
             type="submit"

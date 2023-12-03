@@ -4,12 +4,10 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="theme-color" content="#ffff" />
+    <meta name="description" content="Automatic Visitor Management System" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo92.png" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/logo92.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -24,11 +22,25 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>AVMS</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div
+      id="Modal"
+      class="modal d-flex flex-column align-items-center justify-content-center position-fixed bg-white p-5"
+    >
+      <div class="card p-3 bg-secondary-subtle">
+        <h3>You Can Install This App</h3>
+        <div
+          class="btns d-flex align-items-center justify-content-center gap-3"
+        >
+          <button id="btnInit" class="btn btn-success w-100">Install</button>
+          <button class="btn btn-danger w-100">Not Now</button>
+        </div>
+      </div>
+    </div>
+    <div id="root" class="position-relative h-100"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -39,5 +51,30 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      caches
+        .keys()
+        .then((keyList) =>
+          Promise.all(keyList.map((key) => caches.delete(key)))
+        );
+      setTimeout(() => {
+        let modal = document.getElementById("Modal");
+        const UA = navigator.userAgent;
+
+        const IOS = UA.match(/iPhone|iPad|iPod/);
+        const ANDROID = UA.match(/Android/);
+
+        const PLATFORM = IOS ? "ios" : ANDROID ? "android" : "unknown";
+
+        const standalone = window.matchMedia(
+          "(display-mode: standalone)"
+        ).matches;
+
+        const INSTALLED = !!(standalone || (IOS && !UA.match(/Safari/)));
+        if (INSTALLED) {
+          modal.classList.add("d-none");
+        }
+      }, 200);
+    </script>
   </body>
 </html>
