@@ -5,10 +5,11 @@ import { useFormik } from "formik";
 import Login from "./Login.Interfaces";
 import { portContext } from "../../Context/PortContext";
 import LoginServies from "./Login.Servies";
+import { useNavigate } from "react-router-dom";
 export default function LoginUi() {
-  let port = useContext(portContext);
-
   const [showPassword, setShowPassword] = useState(false);
+  const [erorrMessage, setErrorMessage] = useState(null);
+  let navigate = useNavigate();
   const validationSchema = yup.object({
     email: yup.string().email().required("Email is required"),
     password: yup
@@ -21,8 +22,17 @@ export default function LoginUi() {
       email: "",
       password: "",
     },
-    onSubmit: (Value: Login) => {
-      LoginServies(Value);
+    onSubmit: async (Value: Login) => {
+      try {
+        await LoginServies(Value);
+        setErrorMessage(null);
+        navigate("/dashboard");
+
+        // Login successful, proceed with desired logic
+      } catch (error: any) {
+        setErrorMessage(error.message);
+        // Handle the error, display the error message, etc.
+      }
     },
     validationSchema: validationSchema,
   });
@@ -113,6 +123,11 @@ export default function LoginUi() {
           >
             Login
           </button>
+          {erorrMessage ? (
+            <p className="text-danger my-2">{erorrMessage}</p>
+          ) : (
+            ""
+          )}
         </form>
       </div>
     </div>

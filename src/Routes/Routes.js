@@ -4,6 +4,7 @@ import LoginUi from "../Futures/Login/LoginUi";
 import DashboardUi from "../Futures/Dashboard/DashboardUi";
 import CreateInvitationUI from "../Futures/CreateInvitation/CreateInvitationUI";
 import MoreSettings from "../Futures/MoreSettings/MoreSettings";
+import ListOfInvitations from "../Futures/ListOfInvitations/ListOfInvitations";
 
 let routes = createHashRouter([
   {
@@ -21,6 +22,10 @@ let routes = createHashRouter([
       {
         path: "/CreateInvitation",
         element: <CreateInvitationUI />,
+      },
+      {
+        path: "/invations",
+        element: <ListOfInvitations />,
       },
       {
         path: "/more",

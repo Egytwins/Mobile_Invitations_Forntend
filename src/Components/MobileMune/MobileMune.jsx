@@ -12,7 +12,7 @@ export default function MobileMune() {
           <i className="bi bi-envelope-fill"></i>
           <span>Create Invitation</span>
         </NavLink>
-        <NavLink className="mobileTab" to="/">
+        <NavLink className="mobileTab" to="/invations">
           <i className="bi bi-person-lines-fill"></i>
           <span>Invitation</span>
         </NavLink>
