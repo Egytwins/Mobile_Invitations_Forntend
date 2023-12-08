@@ -69,7 +69,10 @@ export default function DashboardUi() {
         {LastFiveItems
           ? LastFiveItems.map((item) => {
               return (
-                <div className="card p-3 my-2 flex-row justify-content-between align-items-center">
+                <div
+                  className="card p-3 my-2 flex-row justify-content-between align-items-center"
+                  key={item.id}
+                >
                   <span className="name">{item.name}</span>
                   <span className="time">
                     {item.registrationDate

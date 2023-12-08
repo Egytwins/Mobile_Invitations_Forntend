@@ -54,6 +54,32 @@ export default function CreateInvitationUI() {
     formik.handleChange(event);
     setDocInput(true);
   };
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOption = event.target.value;
+    if (selectedOption === "today") {
+      formik.setFieldValue("entryDate", new Date().toISOString().slice(0, 16));
+      formik.setFieldValue(
+        "expiryDate",
+        new Date(new Date().setHours(36)).toISOString().slice(0, 16)
+      );
+      setShowDate(false);
+    } else if (selectedOption === "Custom") {
+      setShowDate(true);
+    }
+  };
+  const handleEntryDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    formik.handleChange(event);
+    const selectedEntryDate = new Date(event.target.value);
+    const minExpiryDate = new Date(
+      selectedEntryDate.getTime() + 2 * 24 * 60 * 60 * 1000
+    );
+    formik.setFieldValue(
+      "expiryDate",
+      minExpiryDate.toISOString().slice(0, 16)
+    );
+  };
   return (
     <div className="row align-items-center justify-content-center min-vh-100">
       <div>
@@ -130,11 +156,7 @@ export default function CreateInvitationUI() {
                   className="form-select p-2"
                   id="selectDate"
                   data-control="select2"
-                  onChange={(e) => {
-                    e.target.value === "today"
-                      ? setShowDate(false)
-                      : setShowDate(true);
-                  }}
+                  onChange={handleSelectChange}
                 >
                   <option value="">Select Date</option>
                   <option value="today">Today 24H</option>
@@ -182,15 +204,11 @@ export default function CreateInvitationUI() {
                     <input
                       type="datetime-local"
                       className="form-control shadow-none"
-                      onChange={formik.handleChange}
+                      onChange={handleEntryDateChange}
                       name="expiryDate"
                       id="expiryDate"
                       placeholder="Expiry Date"
-                      min={new Date(new Date().setHours(36))
-                        .toISOString()
-                        .split(":")
-                        .slice(0, 2)
-                        .join(":")}
+                      min={formik.values.entryDate}
                       autoComplete="true"
                     />
                     <label htmlFor="expiryDate">Expiry Date</label>
