@@ -5,6 +5,7 @@ import DashboardUi from "../Futures/Dashboard/DashboardUi";
 import CreateInvitationUI from "../Futures/CreateInvitation/CreateInvitationUI";
 import MoreSettings from "../Futures/MoreSettings/MoreSettings";
 import ListOfInvitations from "../Futures/ListOfInvitations/ListOfInvitations";
+import QrPageUi from "../Futures/QrPage/QrPageUi";
 
 let routes = createHashRouter([
   {
@@ -30,6 +31,10 @@ let routes = createHashRouter([
       {
         path: "/more",
         element: <MoreSettings />,
+      },
+      {
+        path: "/Qr",
+        element: <QrPageUi />,
       },
     ],
   },

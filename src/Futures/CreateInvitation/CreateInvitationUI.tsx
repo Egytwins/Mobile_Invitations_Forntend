@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import logo from "../../assets/images/Logo/avms-logo.png";
+import CreateInvations from "./CreateInvitation.Servcices";
+import { useNavigate } from "react-router-dom";
+import QrPageUi from "../QrPage/QrPageUi";
 
 export default function CreateInvitationUI() {
+  let navigate = useNavigate();
   let [nameInput, setNameInput] = useState(false);
   let [phoneInput, setPhoneInput] = useState(false);
   let [docInput, setDocInput] = useState(false);
@@ -36,8 +40,14 @@ export default function CreateInvitationUI() {
         .slice(0, 2)
         .join(":"),
     },
-    onSubmit: (x) => {
-      console.log(x);
+    onSubmit: async (data) => {
+      try {
+        let res = await CreateInvations(data);
+        console.log(res.qrLink);
+        navigate(`/Qr`);
+      } catch (error: any) {
+        console.log(error);
+      }
     },
     validationSchema: valdition,
   });
