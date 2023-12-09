@@ -5,8 +5,15 @@ import logo from "../../assets/images/Logo/avms-logo.png";
 import CreateInvations from "./CreateInvitation.Servcices";
 import { useNavigate } from "react-router-dom";
 import QrPageUi from "../QrPage/QrPageUi";
+import { useQrImage } from "../../Context/QrUrlImage";
 
 export default function CreateInvitationUI() {
+  const { qrImageUrl, updateQrImageUrl } = useQrImage();
+
+  const handleUpdateImageUrl = (Url: string) => {
+    // Call the function from the context to update the value
+    updateQrImageUrl(Url);
+  };
   let navigate = useNavigate();
   let [nameInput, setNameInput] = useState(false);
   let [phoneInput, setPhoneInput] = useState(false);
@@ -43,7 +50,7 @@ export default function CreateInvitationUI() {
     onSubmit: async (data) => {
       try {
         let res = await CreateInvations(data);
-        console.log(res.qrLink);
+        handleUpdateImageUrl(res.qrLink);
         navigate(`/Qr`);
       } catch (error: any) {
         console.log(error);

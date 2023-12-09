@@ -6,6 +6,7 @@ import CreateInvitationUI from "../Futures/CreateInvitation/CreateInvitationUI";
 import MoreSettings from "../Futures/MoreSettings/MoreSettings";
 import ListOfInvitations from "../Futures/ListOfInvitations/ListOfInvitations";
 import QrPageUi from "../Futures/QrPage/QrPageUi";
+import CheckToken from "../Auth/CheckToken/CheckToken";
 
 let routes = createHashRouter([
   {
@@ -18,23 +19,43 @@ let routes = createHashRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardUi />,
+        element: (
+          <CheckToken>
+            <DashboardUi />
+          </CheckToken>
+        ),
       },
       {
         path: "/CreateInvitation",
-        element: <CreateInvitationUI />,
+        element: (
+          <CheckToken>
+            <CreateInvitationUI />
+          </CheckToken>
+        ),
       },
       {
         path: "/invations",
-        element: <ListOfInvitations />,
+        element: (
+          <CheckToken>
+            <ListOfInvitations />
+          </CheckToken>
+        ),
       },
       {
         path: "/more",
-        element: <MoreSettings />,
+        element: (
+          <CheckToken>
+            <MoreSettings />
+          </CheckToken>
+        ),
       },
       {
         path: "/Qr",
-        element: <QrPageUi />,
+        element: (
+          <CheckToken>
+            <QrPageUi />
+          </CheckToken>
+        ),
       },
     ],
   },

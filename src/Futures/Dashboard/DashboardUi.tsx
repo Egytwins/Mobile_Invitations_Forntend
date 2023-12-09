@@ -73,7 +73,11 @@ export default function DashboardUi() {
                   className="card p-3 my-2 flex-row justify-content-between align-items-center"
                   key={item.id}
                 >
-                  <span className="name">{item.name}</span>
+                  <span className="name">
+                    {item.name !== undefined && item.name?.length > 7
+                      ? item.name?.split("").splice(0, 7).concat("...").join("")
+                      : item.name}
+                  </span>
                   <span className="time">
                     {item.registrationDate
                       ? new Date(item.registrationDate).toDateString()

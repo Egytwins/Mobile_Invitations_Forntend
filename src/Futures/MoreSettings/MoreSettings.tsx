@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MoreSettings() {
   return (
-    <div>
+    <div className="d-flex flex-column gap-2">
       <div className="card p-2 px-4 gap-3 flex-row fs-2 fw-bold justify-content-between">
         <span>Logout</span>
         <i className="bi bi-box-arrow-right text-info fs-1"></i>

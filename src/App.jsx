@@ -2,13 +2,13 @@ import React from "react";
 import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import routes from "./Routes/Routes";
-import { qrImageProvider } from "./Context/PortContext";
+import { QrImageProvider } from "./Context/QrUrlImage";
 
 function App() {
   return (
-    <qrImageProvider>
+    <QrImageProvider>
       <RouterProvider router={routes} />
-    </qrImageProvider>
+    </QrImageProvider>
   );
 }
 
