@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const axiosInstance = axios.create({
   baseURL: "http://api.example.com", // Replace with your API base URL
 });
@@ -26,13 +27,18 @@ axiosInstance.interceptors.request.use(
 // Response interceptor
 axiosInstance.interceptors.response.use(
   (response: any) => {
-    // Modify the response data here (e.g., parse, transform)
+    console.log(response);
 
     return response;
   },
   (error: any) => {
+    let { status } = error.response;
+    if (status === 401) {
+      const navigate = useNavigate();
+      localStorage.removeItem("token");
+      navigate("/");
+    }
     // Handle response errors here
-
     return Promise.reject(error);
   }
 );
