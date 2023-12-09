@@ -13,7 +13,7 @@ export default function MainLayout() {
           {/* Render the child components specified by the Router */}
         </div>
       </div>
-      <MobileMune />
+      {localStorage.getItem("token") ? <MobileMune /> : ""}
     </>
   );
 }
