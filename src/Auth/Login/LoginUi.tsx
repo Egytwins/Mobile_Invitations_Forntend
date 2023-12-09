@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Login from "./Login.Interfaces";
 import LoginServies from "./Login.Servies";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function LoginUi() {
   const [showPassword, setShowPassword] = useState(false);
   const [erorrMessage, setErrorMessage] = useState(null);
@@ -130,6 +130,9 @@ export default function LoginUi() {
           ) : (
             ""
           )}
+          <Link to="/forgetPassword" className="my-2 text-info d-inline-block">
+            Forget Password?
+          </Link>
         </form>
       </div>
     </div>
