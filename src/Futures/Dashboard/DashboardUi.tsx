@@ -68,7 +68,7 @@ export default function DashboardUi() {
       <div className="recentlyVisits w-100">
         <div className="table_Invitation_text d-flex justify-content-between align-items-center p-2">
           <h3 className="m-0">Recently Visits</h3>
-          <Link to="/invations" className="text-info fw-bold fs-5">
+          <Link to="/app/invations" className="text-info fw-bold fs-5">
             View All
           </Link>
         </div>

@@ -51,7 +51,7 @@ export default function CreateInvitationUI() {
       try {
         let res = await CreateInvations(data);
         handleUpdateImageUrl(res.qrLink);
-        navigate(`/Qr`);
+        navigate(`/app/Qr`);
       } catch (error: any) {
         console.log(error);
       }
@@ -98,7 +98,7 @@ export default function CreateInvitationUI() {
     );
   };
   return (
-    <div className="row align-items-center justify-content-center min-vh-100">
+    <div className="row align-items- justify-content-center min-vh-100">
       <div>
         <form
           className="shadow p-4 rounded-5 bg-white"

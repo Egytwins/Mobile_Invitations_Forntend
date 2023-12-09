@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/images/Logo/avms-logo.png";
 import * as yup from "yup";
 import { useFormik } from "formik";
@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 export default function LoginUi() {
   const [showPassword, setShowPassword] = useState(false);
   const [erorrMessage, setErrorMessage] = useState(null);
+  useEffect(() => {
+    localStorage.removeItem("token");
+  }, []);
   let navigate = useNavigate();
   const validationSchema = yup.object({
     email: yup.string().email().required("Email is required"),
@@ -25,7 +28,7 @@ export default function LoginUi() {
       try {
         await LoginServies(Value);
         setErrorMessage(null);
-        navigate("/dashboard");
+        navigate("/app/dashboard");
 
         // Login successful, proceed with desired logic
       } catch (error: any) {
