@@ -46,8 +46,8 @@ export default function LoginUi() {
   };
 
   return (
-    <div className="row align-items-center justify-content-center min-vh-100">
-      <div>
+    <div className="row align-items-center justify-content-center min-vh-100 w-100">
+      <div className="w-100">
         <div className="logo-img m-4 fixed-top ">
           <img src={logo} alt="Logo" width="120px" />
         </div>

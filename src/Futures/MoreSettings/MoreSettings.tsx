@@ -1,12 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function MoreSettings() {
+  let navigate = useNavigate();
   return (
     <div className="d-flex flex-column gap-2">
       <div
         className="card p-2 px-4 gap-3 flex-row fs-2 fw-bold justify-content-between"
         onClick={() => {
           localStorage.removeItem("token");
+          navigate("/");
         }}
       >
         <span>Logout</span>

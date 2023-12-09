@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import MobileMune from "../MobileMune/MobileMune";
 
-export default function MainLayout() {
+export default function MainLayout(props) {
   return (
     <>
       <div className="bgImage"></div>
@@ -13,7 +13,7 @@ export default function MainLayout() {
           {/* Render the child components specified by the Router */}
         </div>
       </div>
-      {localStorage.getItem("token") ? <MobileMune /> : ""}
+      <MobileMune />
     </>
   );
 }

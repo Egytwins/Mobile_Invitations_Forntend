@@ -9,16 +9,17 @@ import QrPageUi from "../Futures/QrPage/QrPageUi";
 import CheckToken from "../Auth/CheckToken/CheckToken";
 
 let routes = createHashRouter([
+  { path: "/", element: <LoginUi /> },
   {
-    path: "/",
+    path: "/app",
     element: <MainLayout />,
     children: [
+      // {
+      //   index: true,
+      //   element: <LoginUi />,
+      // },
       {
-        index: true,
-        element: <LoginUi />,
-      },
-      {
-        path: "/dashboard",
+        path: "dashboard",
         element: (
           <CheckToken>
             <DashboardUi />
@@ -26,7 +27,7 @@ let routes = createHashRouter([
         ),
       },
       {
-        path: "/CreateInvitation",
+        path: "CreateInvitation",
         element: (
           <CheckToken>
             <CreateInvitationUI />
@@ -34,7 +35,7 @@ let routes = createHashRouter([
         ),
       },
       {
-        path: "/invations",
+        path: "invations",
         element: (
           <CheckToken>
             <ListOfInvitations />
@@ -42,7 +43,7 @@ let routes = createHashRouter([
         ),
       },
       {
-        path: "/more",
+        path: "more",
         element: (
           <CheckToken>
             <MoreSettings />
@@ -50,7 +51,7 @@ let routes = createHashRouter([
         ),
       },
       {
-        path: "/Qr",
+        path: "Qr",
         element: (
           <CheckToken>
             <QrPageUi />
