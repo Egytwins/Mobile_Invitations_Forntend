@@ -6,7 +6,7 @@ export default async function CreateInvations(
 ): Promise<any> {
   try {
     let data = await axiosInstance
-      .post(`${process.env.REACT_APP_PORT}Registrations`, Data)
+      .post(`${process.env.REACT_APP_PORT}Registrations/create`, Data)
       .then((res) => {
         return res.data;
       });

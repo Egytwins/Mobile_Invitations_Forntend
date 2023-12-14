@@ -27,7 +27,7 @@ export default function FrogetPass() {
   async function forgotPasswordsApi(values: { email: string }) {
     setLoading(true);
     let data = await axios
-      .post(`${process.env.REACT_APP_PORT}UserAccount/forgetPassword`, values)
+      .post(`${process.env.REACT_APP_PORT}UserAccount/forget-password`, values)
       .then((res) => {
         navg("/newPassword");
       })

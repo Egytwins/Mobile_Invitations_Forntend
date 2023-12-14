@@ -47,7 +47,7 @@ export default function CreateNewPassword() {
   async function forgotPasswordsApi(values: { email: string }) {
     setLoading(true);
     let data = await axios
-      .post(`${process.env.REACT_APP_PORT}UserAccount/resetPassword`, values)
+      .post(`${process.env.REACT_APP_PORT}UserAccount/reset-password`, values)
       .then((res) => {
         localStorage.removeItem("token");
         navg("/");
