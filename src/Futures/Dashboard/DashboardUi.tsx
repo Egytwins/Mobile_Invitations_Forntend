@@ -18,8 +18,8 @@ export default function DashboardUi() {
   const GetInvationsDataInfo = async () => {
     try {
       let res: any = await GetInvationsInfo();
-      let data: any = await GetLastFiveItems();
-      setLastFiveItems(data.slice(0, 5));
+      let data: any = await GetLastFiveItems(1, 5);
+      setLastFiveItems(data.data);
       setGEtInfoData(res);
     } catch (err) {
       console.log(err);

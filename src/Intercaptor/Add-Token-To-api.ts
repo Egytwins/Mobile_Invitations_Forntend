@@ -25,7 +25,9 @@ axiosInstance.interceptors.request.use(
 // Response interceptor
 axiosInstance.interceptors.response.use(
   (response: any) => {
-    console.log(response);
+    if (response.headers.authorization) {
+      localStorage.setItem("tokennn", response.headers.authorization);
+    }
     return response;
   },
   (error: any) => {

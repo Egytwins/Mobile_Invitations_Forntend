@@ -32,7 +32,7 @@ export default function QrPageUi() {
       <img
         src={qrImageUrl || sessionStorage.getItem("qrImageUrl")}
         alt="qrImageUrl"
-        className="rounded-5"
+        className="rounded-5 w-100"
       />
       <button className="btn btn-info text-white px-3" onClick={Share}>
         Share <i className="bi bi-share"></i>

@@ -3,7 +3,7 @@ import Login from "./Login.Interfaces";
 
 export default async function LoginServies(Data: Login): Promise<any> {
   let data = await axiosInstance
-    .post(`${process.env.REACT_APP_PORT}Auth/signIn`, Data)
+    .post(`${process.env.REACT_APP_PORT}Auth/sign-in`, Data)
     .then((res) => {
       localStorage.setItem("token", res.data.data.token);
     })

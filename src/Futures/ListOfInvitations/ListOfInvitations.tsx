@@ -9,8 +9,8 @@ export default function ListOfInvitations() {
   }, []);
   const GetInvationsDataInfo = async () => {
     try {
-      let data: any = await GetLastFiveItems();
-      setGEtInfoData(data);
+      let data: any = await GetLastFiveItems(1, 20);
+      setGEtInfoData(data.data);
     } catch (err) {
       console.log(err);
     }
