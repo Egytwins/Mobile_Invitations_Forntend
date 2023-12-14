@@ -4,6 +4,7 @@ import { useQrImage } from "../../Context/QrUrlImage";
 
 export default function QrPageUi() {
   const { qrImageUrl, updateQrImageUrl } = useQrImage();
+  const [Loading, setLoading] = React.useState(false);
   useEffect(() => {
     if (qrImageUrl) {
       sessionStorage.setItem("qrImageUrl", qrImageUrl);
@@ -15,6 +16,7 @@ export default function QrPageUi() {
     const fileType = "image/png";
     try {
       // Fetch the image file
+      setLoading(true);
       const response = await fetch(fileUrl);
       const blob = await response.blob();
       // Create a file object
@@ -23,7 +25,9 @@ export default function QrPageUi() {
       await navigator.share({
         files: [file],
       });
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.error("Share failed:", err.message);
     }
   }
@@ -34,9 +38,17 @@ export default function QrPageUi() {
         alt="qrImageUrl"
         className="rounded-5 w-100"
       />
-      <button className="btn btn-info text-white px-3" onClick={Share}>
-        Share <i className="bi bi-share"></i>
-      </button>
+      {Loading ? (
+        <button className="btn  btn-primary" disabled>
+          <div className="custom-loader mx-auto">
+            <i class="bi bi-arrow-repeat"></i>
+          </div>
+        </button>
+      ) : (
+        <button className="btn btn-primary" onClick={Share}>
+          Share
+        </button>
+      )}
     </div>
   );
 }

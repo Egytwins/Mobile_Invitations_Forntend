@@ -9,7 +9,7 @@ import { useQrImage } from "../../Context/QrUrlImage";
 
 export default function CreateInvitationUI() {
   const { qrImageUrl, updateQrImageUrl } = useQrImage();
-
+  const [loading, setLoading] = useState(false);
   const handleUpdateImageUrl = (Url: string) => {
     // Call the function from the context to update the value
     updateQrImageUrl(Url);
@@ -49,10 +49,12 @@ export default function CreateInvitationUI() {
     },
     onSubmit: async (data) => {
       try {
+        setLoading(true);
         let res = await CreateInvations(data);
         handleUpdateImageUrl(res.qrLink);
         navigate(`/app/Qr`);
       } catch (error: any) {
+        setLoading(false);
         console.log(error);
       }
     },
@@ -240,12 +242,23 @@ export default function CreateInvitationUI() {
             ""
           )}
 
-          <button
-            className="btn btn-info text-white w-100 rounded-5"
-            type="submit"
-          >
-            Send
-          </button>
+          {loading ? (
+            <button
+              className="btn btn-info text-white w-100 rounded-5"
+              disabled
+            >
+              <div className="custom-loader mx-auto">
+                <i className="bi bi-arrow-repeat"></i>
+              </div>
+            </button>
+          ) : (
+            <button
+              className="btn btn-info text-white w-100 rounded-5"
+              type="submit"
+            >
+              Send
+            </button>
+          )}
         </form>
       </div>
     </div>

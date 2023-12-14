@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function LoginUi() {
   const [showPassword, setShowPassword] = useState(false);
   const [erorrMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     localStorage.removeItem("token");
   }, []);
@@ -26,12 +27,14 @@ export default function LoginUi() {
     },
     onSubmit: async (Value: Login) => {
       try {
+        setLoading(true);
         await LoginServies(Value);
         setErrorMessage(null);
         navigate("/app/dashboard");
 
         // Login successful, proceed with desired logic
       } catch (error: any) {
+        setLoading(false);
         setErrorMessage(error.message);
         // Handle the error, display the error message, etc.
       }
@@ -118,13 +121,24 @@ export default function LoginUi() {
               <p className="text-danger">{formik.errors.password}</p>
             )}
           </div>
+          {loading ? (
+            <button
+              className="btn btn-info text-white w-100 rounded-5"
+              disabled
+            >
+              <div className="custom-loader mx-auto">
+                <i className="bi bi-arrow-repeat"></i>
+              </div>
+            </button>
+          ) : (
+            <button
+              className="btn btn-info text-white w-100 rounded-5"
+              type="submit"
+            >
+              Login
+            </button>
+          )}
 
-          <button
-            className="btn btn-info text-white w-100 rounded-5"
-            type="submit"
-          >
-            Login
-          </button>
           {erorrMessage ? (
             <p className="text-danger my-2">{erorrMessage}</p>
           ) : (

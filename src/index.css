@@ -113,3 +113,12 @@ code {
 .text-info {
   color: var(--mainColor) !important;
 }
+/* Spinner */
+.custom-loader {
+  animation: s3 1s infinite linear;
+}
+@keyframes s3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
