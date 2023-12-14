@@ -4,6 +4,7 @@ import { GetInvationsInfo, GetLastFiveItems } from "./Dashboard.Services";
 import { string } from "yup";
 import { Invitations } from "./Dashboard.Interface";
 import { Link } from "react-router-dom";
+import StatusVisitLabels from "../../utilities/StatusVisitLabels/StatusVisitLabels";
 
 export default function DashboardUi() {
   let [GEtInfoData, setGEtInfoData] = useState({
@@ -99,7 +100,7 @@ export default function DashboardUi() {
                             .join("")
                         : ""}
                     </span>
-                    <span className="badge text-bg-success">Check In</span>
+                    <StatusVisitLabels number={item?.registraionStatus} />
                   </div>
                 );
               })

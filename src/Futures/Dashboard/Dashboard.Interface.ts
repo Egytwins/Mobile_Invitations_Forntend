@@ -9,4 +9,5 @@ export interface Invitations {
   registrationTime?: Date;
   success?: Number;
   zoneId?: string;
+  registraionStatus?: Number;
 }
