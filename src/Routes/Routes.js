@@ -1,4 +1,4 @@
-import { createHashRouter } from "react-router-dom";
+import { createHashRouter, useNavigate } from "react-router-dom";
 import MainLayout from "../Components/MainLayout/MainLayout";
 import LoginUi from "../Auth/Login/LoginUi";
 import DashboardUi from "../Futures/Dashboard/DashboardUi";
@@ -6,12 +6,19 @@ import CreateInvitationUI from "../Futures/CreateInvitation/CreateInvitationUI";
 import MoreSettings from "../Futures/MoreSettings/MoreSettings";
 import ListOfInvitations from "../Futures/ListOfInvitations/ListOfInvitations";
 import QrPageUi from "../Futures/QrPage/QrPageUi";
-import CheckToken from "../Auth/CheckToken/CheckToken";
+import CheckToken, { CheckLoginNaviagte } from "../Auth/CheckToken/CheckToken";
 import FrogetPass from "../Auth/ForgetPassword/SendEmailToGetCode";
 import CreateNewPassword from "../Auth/ForgetPassword/CreateNewPassword";
 
 let routes = createHashRouter([
-  { path: "/", element: <LoginUi /> },
+  {
+    path: "/",
+    element: (
+      <CheckLoginNaviagte>
+        <LoginUi />
+      </CheckLoginNaviagte>
+    ),
+  },
   { path: "/forgetpassword", element: <FrogetPass /> },
   { path: "/newPassword", element: <CreateNewPassword /> },
   {

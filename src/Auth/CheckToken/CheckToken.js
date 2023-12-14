@@ -8,3 +8,10 @@ export default function CheckToken(props) {
     return <Navigate to="/"></Navigate>;
   }
 }
+export function CheckLoginNaviagte(props) {
+  if (localStorage.getItem("token")) {
+    return <Navigate to="/app/home"></Navigate>;
+  } else {
+    return props.children;
+  }
+}
