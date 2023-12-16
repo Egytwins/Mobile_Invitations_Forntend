@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 export default function CreateNewPassword() {
+  const { t, i18n } = useTranslation();
   let [errorMsg, seterrMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [erorrMessage, setErrorMessage] = useState(null);
@@ -66,7 +68,7 @@ export default function CreateNewPassword() {
           className="shadow p-4 rounded-5 bg-white"
           onSubmit={formik1.handleSubmit}
         >
-          <h3 className="text-center text-info mb-3">Send Code To Email</h3>
+          <h3 className="text-center text-info mb-3">{t("SendCodeToEmail")}</h3>
           <div className="inputWithValidation d-flex flex-column">
             <div className="input-group mb-3">
               <span className="input-group-text bg-info text-white">
@@ -83,7 +85,7 @@ export default function CreateNewPassword() {
                   name="resetCode"
                   placeholder="resetCode"
                 />
-                <label htmlFor="resetCode">Reset Code</label>
+                <label htmlFor="resetCode">{t("resetCode")}</label>
               </div>
             </div>
             {formik1.touched.resetCode && formik1.errors.resetCode && (
@@ -106,7 +108,7 @@ export default function CreateNewPassword() {
                   name="email"
                   placeholder="Email"
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("email")}</label>
               </div>
             </div>
             {formik1.touched.email && formik1.errors.email && (
@@ -142,7 +144,7 @@ export default function CreateNewPassword() {
                   id="newPassword"
                   placeholder="newPassword"
                 />
-                <label htmlFor="newPassword">New Password</label>
+                <label htmlFor="newPassword">{t("newPassword")}</label>
               </div>
             </div>
             {formik1.touched.newPassword && formik1.errors.newPassword && (
@@ -162,7 +164,7 @@ export default function CreateNewPassword() {
               type="submit"
               className="btn btn-info text-white w-100 rounded-5"
             >
-              Send
+              {t("Send")}
             </button>
           )}
           {errorMsg ? <p className="text-danger my-2">{errorMsg}</p> : ""}

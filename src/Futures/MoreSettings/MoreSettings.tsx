@@ -1,7 +1,10 @@
+import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export default function MoreSettings() {
+  let { t, i18n } = useTranslation();
   let navigate = useNavigate();
   return (
     <div className="d-flex flex-column gap-2">
@@ -12,7 +15,7 @@ export default function MoreSettings() {
           navigate("/");
         }}
       >
-        <span>Logout</span>
+        <span>{t("signOut")}</span>
         <i className="bi bi-box-arrow-right text-info fs-1"></i>
       </div>
       <div
@@ -21,20 +24,36 @@ export default function MoreSettings() {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <span>Language</span>
+        <span>{t("language")}</span>
         <i className="bi bi-globe2 text-info fs-1"></i>
       </div>
       <div className="dropdown">
         <ul className="dropdown-menu w-100">
           <li>
-            <a className="dropdown-item" href="#">
-              Arabic
-            </a>
+            <button
+              className="dropdown-item"
+              onClick={() => {
+                i18n.changeLanguage("en");
+                document
+                  .getElementsByTagName("html")[0]
+                  .setAttribute("dir", "ltr");
+              }}
+            >
+              {t("english")}
+            </button>
           </li>
           <li>
-            <a className="dropdown-item" href="#">
-              English
-            </a>
+            <button
+              className="dropdown-item"
+              onClick={() => {
+                i18n.changeLanguage("ar");
+                document
+                  .getElementsByTagName("html")[0]
+                  .setAttribute("dir", "rtl");
+              }}
+            >
+              {t("arabic")}
+            </button>
           </li>
         </ul>
       </div>

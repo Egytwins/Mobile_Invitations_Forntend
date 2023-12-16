@@ -5,8 +5,10 @@ import { string } from "yup";
 import { Invitations } from "./Dashboard.Interface";
 import { Link } from "react-router-dom";
 import StatusVisitLabels from "../../utilities/StatusVisitLabels/StatusVisitLabels";
+import { useTranslation } from "react-i18next";
 
 export default function DashboardUi() {
+  let { t, i18n } = useTranslation();
   let [GEtInfoData, setGEtInfoData] = useState({
     totalTodayVisits: 0,
     totalUpcomingVisits: 0,
@@ -35,7 +37,7 @@ export default function DashboardUi() {
               <i className="bi bi-alarm fs-2"></i>
             </span>
             <div className="tail-text text-white">
-              <h4>Today Visits</h4>
+              <h4>{t("todayVisits")}</h4>
               <h3 className="text-center">{GEtInfoData?.totalTodayVisits}</h3>
             </div>
           </div>
@@ -46,7 +48,7 @@ export default function DashboardUi() {
               <i className="bi bi-hourglass-split fs-2"></i>
             </span>
             <div className="tail-text text-white">
-              <h4>Schedule Visits</h4>
+              <h4>{t("scheduleVisits")}</h4>
               <h3 className="text-center">
                 {GEtInfoData?.totalUpcomingVisits}
               </h3>
@@ -59,7 +61,7 @@ export default function DashboardUi() {
               <i className="bi bi-calendar-check fs-2"></i>
             </span>
             <div className="tail-text text-white">
-              <h4>Punch In Visits</h4>
+              <h4>{t("punchInVisits")}</h4>
               <h3 className="text-center">{GEtInfoData?.totalExpiredVisits}</h3>
             </div>
           </div>
@@ -68,9 +70,9 @@ export default function DashboardUi() {
 
       <div className="recentlyVisits w-100">
         <div className="table_Invitation_text d-flex justify-content-between align-items-center p-2">
-          <h3 className="m-0">Recently Visits</h3>
+          <h3 className="m-0">{t("recentlyVisits")}</h3>
           <Link to="/app/invations" className="text-info fw-bold fs-5">
-            View All
+            {t("viewAll")}
           </Link>
         </div>
         <div className="">

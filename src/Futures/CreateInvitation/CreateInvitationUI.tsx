@@ -6,8 +6,11 @@ import CreateInvations from "./CreateInvitation.Servcices";
 import { useNavigate } from "react-router-dom";
 import QrPageUi from "../QrPage/QrPageUi";
 import { useQrImage } from "../../Context/QrUrlImage";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function CreateInvitationUI() {
+  let { t, i18n } = useTranslation();
   const { qrImageUrl, updateQrImageUrl } = useQrImage();
   const [loading, setLoading] = useState(false);
   const handleUpdateImageUrl = (Url: string) => {
@@ -106,7 +109,7 @@ export default function CreateInvitationUI() {
           className="shadow p-4 rounded-5 bg-white"
           onSubmit={formik.handleSubmit}
         >
-          <h3 className="text-center text-info">Send Invitation</h3>
+          <h3 className="text-center text-info">{t("sendInvitation")}</h3>
           <div className="inputWithValidation d-flex flex-column">
             <div className="input-group mb-3">
               <span className="input-group-text bg-info text-white">
@@ -121,7 +124,7 @@ export default function CreateInvitationUI() {
                   name="name"
                   placeholder="Name"
                 />
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">{t("Name")}</label>
               </div>
             </div>
             {nameInput && <p className="text-danger">{formik.errors.name}</p>}
@@ -141,7 +144,7 @@ export default function CreateInvitationUI() {
                   placeholder="phone"
                   autoComplete="true"
                 />
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="phone">{t("phone")}</label>
               </div>
             </div>
             {phoneInput && <p className="text-danger">{formik.errors.phone}</p>}
@@ -161,7 +164,7 @@ export default function CreateInvitationUI() {
                   placeholder="National Id"
                   autoComplete="true"
                 />
-                <label htmlFor="nationalId">National Id</label>
+                <label htmlFor="nationalId">{t("National Id")}</label>
               </div>
             </div>
             {docInput && (
@@ -177,9 +180,9 @@ export default function CreateInvitationUI() {
                   data-control="select2"
                   onChange={handleSelectChange}
                 >
-                  <option value="">Select Date</option>
-                  <option value="today">Today 24H</option>
-                  <option value="Custom">Custom Date</option>
+                  <option value="">{t("selectDate")}</option>
+                  <option value="today">{t("Today 24H")}</option>
+                  <option value="Custom">{t("customDate")}</option>
                 </select>
                 {/* <label htmlFor="documentID">Select Date</label> */}
               </div>
@@ -207,7 +210,7 @@ export default function CreateInvitationUI() {
                       placeholder="Entry Date"
                       autoComplete="true"
                     />
-                    <label htmlFor="entryDate">Entry Date</label>
+                    <label htmlFor="entryDate">{t("entryDate")}</label>
                   </div>
                 </div>
                 {docInput && (
@@ -230,7 +233,7 @@ export default function CreateInvitationUI() {
                       min={formik.values.entryDate}
                       autoComplete="true"
                     />
-                    <label htmlFor="expiryDate">Expiry Date</label>
+                    <label htmlFor="expiryDate">{t("expiryDate")}</label>
                   </div>
                 </div>
                 {docInput && (
@@ -256,7 +259,7 @@ export default function CreateInvitationUI() {
               className="btn btn-info text-white w-100 rounded-5"
               type="submit"
             >
-              Send
+              {t("Send")}
             </button>
           )}
         </form>

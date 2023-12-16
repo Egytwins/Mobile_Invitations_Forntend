@@ -5,7 +5,9 @@ import { useFormik } from "formik";
 import Login from "./Login.Interfaces";
 import LoginServies from "./Login.Servies";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 export default function LoginUi() {
+  const { t, i18n } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [erorrMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -61,7 +63,7 @@ export default function LoginUi() {
           className="shadow p-4 rounded-5 bg-white"
           onSubmit={formik.handleSubmit}
         >
-          <h3 className="text-center text-info">Login</h3>
+          <h3 className="text-center text-info">{t("login")}</h3>
           <div className="inputWithValidation d-flex flex-column">
             <div className="input-group mb-3">
               <span className="input-group-text bg-info text-white">
@@ -78,7 +80,7 @@ export default function LoginUi() {
                   name="email"
                   placeholder="Email"
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("email")}</label>
               </div>
             </div>
             {formik.touched.email && formik.errors.email && (
@@ -114,7 +116,7 @@ export default function LoginUi() {
                   id="password"
                   placeholder="Password"
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">{t("password")}</label>
               </div>
             </div>
             {formik.touched.password && formik.errors.password && (
@@ -135,7 +137,7 @@ export default function LoginUi() {
               className="btn btn-info text-white w-100 rounded-5"
               type="submit"
             >
-              Login
+              {t("login")}
             </button>
           )}
 
@@ -145,7 +147,7 @@ export default function LoginUi() {
             ""
           )}
           <Link to="/forgetPassword" className="my-2 text-info d-inline-block">
-            Forget Password?
+            {t("frojetPass")}
           </Link>
         </form>
       </div>

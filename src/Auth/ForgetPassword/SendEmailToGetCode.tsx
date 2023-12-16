@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 export default function FrogetPass() {
+  const { t, i18n } = useTranslation();
   let [errorMsg, seterrMsg] = useState("");
   let [loading, setLoading] = useState(false);
   let navg = useNavigate();
@@ -46,7 +48,7 @@ export default function FrogetPass() {
           className="shadow p-4 rounded-5 bg-white"
           onSubmit={formik1.handleSubmit}
         >
-          <h3 className="text-center text-info mb-3">Send Code To Email</h3>
+          <h3 className="text-center text-info mb-3">{t("SendCodeToEmail")}</h3>
           <div className="inputWithValidation d-flex flex-column">
             <div className="input-group mb-3">
               <span className="input-group-text bg-info text-white">
@@ -84,7 +86,7 @@ export default function FrogetPass() {
               type="submit"
               className="btn btn-info text-white w-100 rounded-5"
             >
-              Send
+              {t("send")}
             </button>
           )}
           {errorMsg ? <p className="text-danger my-2">{errorMsg}</p> : ""}
