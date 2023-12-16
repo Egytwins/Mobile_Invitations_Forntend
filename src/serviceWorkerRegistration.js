@@ -21,71 +21,75 @@ const isLocalhost = Boolean(
 );
 
 export function register(config) {
-  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-    // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    if (publicUrl.origin !== window.location.origin) {
-      // Our service worker won't work if PUBLIC_URL is on a different origin
-      // from what our page is served on. This might happen if a CDN is used to
-      // serve assets; see https://github.com/facebook/create-react-app/issues/2374
-      return;
+  return new Promise((resolve, reject) => {
+    function onDomContentLoaded() {
+      if (
+        process.env.NODE_ENV === "production" &&
+        "serviceWorker" in navigator
+      ) {
+        const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+        if (publicUrl.origin !== window.location.origin) {
+          return reject(
+            "Service worker won't work if PUBLIC_URL is on a different origin."
+          );
+        }
+
+        const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+
+        if (isLocalhost) {
+          checkValidServiceWorker(swUrl, config);
+          navigator.serviceWorker.ready.then(() => {
+            resolve(); // Resolve the promise when service worker is ready
+          });
+        } else {
+          registerValidSW(swUrl, config).then(() => {
+            resolve(); // Resolve the promise when service worker is ready
+          });
+        }
+      } else {
+        resolve(); // Resolve the promise if service worker is not supported or in development mode
+      }
     }
 
-    window.addEventListener("load", () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
-      if (isLocalhost) {
-        // This is running on localhost. Let's check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl, config);
-
-        // Add some additional logging to localhost, pointing developers to the
-        // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then(() => {});
-      } else {
-        // Is not localhost. Just register service worker
-        registerValidSW(swUrl, config);
-      }
-    });
-  }
+    // Check if the document is already parsed
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", onDomContentLoaded);
+    } else {
+      onDomContentLoaded();
+    }
+  });
 }
 
 function registerValidSW(swUrl, config) {
-  navigator.serviceWorker
-    .register(swUrl)
-    .then((registration) => {
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        if (installingWorker == null) {
-          return;
-        }
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === "installed") {
-            if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
-
-              // Execute callback
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-
-              // Execute callback
-              if (config && config.onSuccess) {
-                config.onSuccess(registration);
-              }
-            }
+  return new Promise((resolve, reject) => {
+    navigator.serviceWorker
+      .register(swUrl)
+      .then((registration) => {
+        registration.onupdatefound = () => {
+          const installingWorker = registration.installing;
+          if (installingWorker == null) {
+            return;
           }
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === "installed") {
+              if (navigator.serviceWorker.controller) {
+                if (config && config.onUpdate) {
+                  config.onUpdate(registration);
+                }
+              } else {
+                if (config && config.onSuccess) {
+                  config.onSuccess(registration);
+                }
+              }
+              resolve(); // Resolve the promise when service worker is installed
+            }
+          };
         };
-      };
-    })
-    .catch((error) => {
-      console.error("Error during service worker registration:", error);
-    });
+      })
+      .catch((error) => {
+        reject(`Error during service worker registration: ${error}`);
+      });
+  });
 }
 
 function checkValidServiceWorker(swUrl, config) {
@@ -118,37 +122,36 @@ function checkValidServiceWorker(swUrl, config) {
     });
 }
 // Initialize deferredPrompt for use later to show browser install prompt.
-let deferredPrompt;
-let buttonInstall = document.getElementById("btnInit");
-window.addEventListener("beforeinstallprompt", (e) => {
-  // Prevent the mini-infobar from appearing on mobile
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI notify the user they can install the PWA
-  // Optionally, send analytics event that PWA install promo was shown.
-  console.log(`'beforeinstallprompt' event was fired.`);
-});
-buttonInstall.addEventListener("click", async () => {
-  // Hide the app provided install promotion
-  // hideInstallPromotion();
-  // Show the install prompt
-  deferredPrompt.prompt();
-  // Wait for the user to respond to the prompt
-  const { outcome } = await deferredPrompt.userChoice;
-  // Optionally, send analytics event with outcome of user choice
-  console.log(`User response to the install prompt: ${outcome}`);
-  // We've used the prompt, and can't use it again, throw it away
-  deferredPrompt = null;
-});
-window.addEventListener("appinstalled", () => {
-  // Hide the app-provided install promotion
-  // hideInstallPromotion();
-  // Clear the deferredPrompt so it can be garbage collected
-  deferredPrompt = null;
-  // Optionally, send analytics event to indicate successful install
-  console.log("PWA was installed");
-});
+// let deferredPrompt;
+// window.addEventListener("beforeinstallprompt", (e) => {
+//   // Prevent the mini-infobar from appearing on mobile
+//   e.preventDefault();
+//   // Stash the event so it can be triggered later.
+//   deferredPrompt = e;
+//   // Update UI notify the user they can install the PWA
+//   // Optionally, send analytics event that PWA install promo was shown.
+//   console.log(`'beforeinstallprompt' event was fired.`);
+// });
+// export default InstallBtn function() {
+//   // Hide the app provided install promotion
+//   // hideInstallPromotion();
+//   // Show the install prompt
+//   deferredPrompt.prompt();
+//   // Wait for the user to respond to the prompt
+//   const { outcome } = await deferredPrompt.userChoice;
+//   // Optionally, send analytics event with outcome of user choice
+//   console.log(`User response to the install prompt: ${outcome}`);
+//   // We've used the prompt, and can't use it again, throw it away
+//   deferredPrompt = null;
+// };
+// window.addEventListener("appinstalled", () => {
+//   // Hide the app-provided install promotion
+//   // hideInstallPromotion();
+//   // Clear the deferredPrompt so it can be garbage collected
+//   deferredPrompt = null;
+//   // Optionally, send analytics event to indicate successful install
+//   console.log("PWA was installed");
+// });
 export function unregister() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready
