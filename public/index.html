@@ -28,14 +28,17 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div
       id="Modal"
-      class="modal d-flex flex-column align-items-center justify-content-center position-fixed bg-white p-5 d-none"
+      class="modal d-flex flex-column align-items-center justify-content-center position-fixed bg-white p-5"
     >
-      <div class="card p-3 bg-secondary-subtle">
+      <div class="card p-3 bg-secondary-subtle shadow">
         <h3 class="p-4 text-center">You Can Install This App</h3>
         <div
           class="btns d-flex align-items-center justify-content-center gap-3"
         >
           <button id="btnInit" class="btn btn-success w-100">Install</button>
+          <div className="custom-loader mx-auto" id="installSpinner">
+            <i className="bi bi-arrow-repeat"></i>
+          </div>
           <!-- <button class="btn btn-danger w-100" data-bs-dismiss="modal">
             Not Now
           </button> -->
