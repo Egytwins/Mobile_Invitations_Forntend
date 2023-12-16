@@ -1,20 +1,22 @@
 import React from "react";
 import InstallBtn from "./InstallBtn";
-
+import Carousel from "react-bootstrap/Carousel";
+import step1 from "../../assets/images/Pwa_Steps_Install/Step1.jpg";
+import step2 from "../../assets/images/Pwa_Steps_Install/Step2.jpg";
+import step3 from "../../assets/images/Pwa_Steps_Install/Step3.png";
+import step4 from "../../assets/images/Pwa_Steps_Install/Step4.jpg";
 type PlatformType = "android" | "ios";
 
+let imgArr = [step1, step2, step3, step4];
 interface PwaGlobalInstallProps {
   platform: PlatformType;
+  setIsPwaInstalled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PwaGlobalInstall: React.FC<PwaGlobalInstallProps> = ({ platform }) => {
-  //   if (platform === "android") {
-  //     return <div>Install PWA using the box install method</div>;
-  //   } else if (platform === "ios") {
-  //     return <div>Install PWA manually on iOS</div>;
-  //   } else {
-  //     return <div>Unsupported platform</div>;
-  //   }
+const PwaGlobalInstall: React.FC<PwaGlobalInstallProps> = ({
+  platform,
+  setIsPwaInstalled,
+}) => {
   return (
     <div
       id="Modal"
@@ -22,14 +24,21 @@ const PwaGlobalInstall: React.FC<PwaGlobalInstallProps> = ({ platform }) => {
     >
       {platform === "ios" ? (
         <div className="card p-3 bg-secondary-subtle shadow">
-          <h3 className="p-4 text-center">Ios App</h3>
-          <div className="btns d-flex align-items-center justify-content-center gap-3"></div>
+          <Carousel controls={true} indicators={false} className="mb-5 mt-3">
+            {imgArr.map((item, index) => {
+              return (
+                <Carousel.Item key={index}>
+                  <img className="d-block w-100" src={item} alt="First slide" />
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
         </div>
       ) : (
         <div className="card p-3 bg-secondary-subtle shadow">
           <h3 className="p-4 text-center">You Can Install This App</h3>
           <div className="btns d-flex align-items-center justify-content-center gap-3">
-            <InstallBtn />
+            <InstallBtn setIsPwaInstalled={setIsPwaInstalled} />
             <div className="custom-loader mx-auto" id="installSpinner">
               <i className="bi bi-arrow-repeat"></i>
             </div>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 let deferredPrompt;
 
-export default function InstallBtn() {
+export default function InstallBtn({ setIsPwaInstalled }) {
   let [Loading, setLoading] = React.useState(false);
   const handleInstallClick = () => {
     if (deferredPrompt) {
@@ -20,6 +20,7 @@ export default function InstallBtn() {
 
           // If the user accepted the prompt, reset deferredPrompt to null
           if (outcome === "accepted") {
+            setIsPwaInstalled(true);
             deferredPrompt = null;
           }
         })

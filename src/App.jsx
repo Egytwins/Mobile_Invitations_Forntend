@@ -8,11 +8,13 @@ import PwaGlobalInstall from "./Futures/Pwa_Install/PwaGloabalInstall";
 function App() {
   let [isPwaInstalled, setIsPwaInstalled] = React.useState(false);
   let [PLATFORM, setPLATFORM] = React.useState("unknown");
+
   React.useEffect(() => {
     let { INSTALLED, PLATFORM } = CheckIfPwaAppInstalled();
     setIsPwaInstalled(INSTALLED);
     setPLATFORM(PLATFORM);
-  }, []);
+  }, [isPwaInstalled]);
+
   function CheckIfPwaAppInstalled() {
     const UA = navigator.userAgent;
     const IOS = UA.match(/iPhone|iPad|iPod/);
@@ -26,13 +28,20 @@ function App() {
     console.log(INSTALLED, PLATFORM);
     return { INSTALLED, PLATFORM };
   }
-  // window.addEventListener("unhandledrejection", (e) => {});
-  return isPwaInstalled ? (
-    <QrImageProvider>
-      <RouterProvider router={routes} />
-    </QrImageProvider>
-  ) : (
-    <PwaGlobalInstall platform={PLATFORM} />
+
+  return (
+    <React.Fragment>
+      {isPwaInstalled ? (
+        <QrImageProvider>
+          <RouterProvider router={routes} />
+        </QrImageProvider>
+      ) : (
+        <PwaGlobalInstall
+          platform={PLATFORM}
+          setIsPwaInstalled={setIsPwaInstalled}
+        />
+      )}
+    </React.Fragment>
   );
 }
 
