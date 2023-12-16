@@ -13,7 +13,7 @@ function App() {
     let { INSTALLED, PLATFORM } = CheckIfPwaAppInstalled();
     setIsPwaInstalled(INSTALLED);
     setPLATFORM(PLATFORM);
-  }, [isPwaInstalled]);
+  }, []);
 
   function CheckIfPwaAppInstalled() {
     const UA = navigator.userAgent;
